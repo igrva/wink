@@ -4,7 +4,8 @@ var properties = JSON.stringify(drmParam);
 function stbPlay(url, pos){
         if (url.indexOf('DRM_TYPE=VERIMATRIX')>0){
                drmVMX=1;
-               url=url.replace(/\|COMPONENT=HLS\|DRM_TYPE=VERIMATRIX/g,"");
+               url=url.replace(/\|COMPONENT=HLS/g,"");
+               url=url.replace(/\|DRM_TYPE=VERIMATRIX/g,""); 
         }else{drmVMX=0}; 
         if(sPlayers){
         if(pos) url += '#t='+pos;
