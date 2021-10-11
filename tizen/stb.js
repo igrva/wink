@@ -107,8 +107,10 @@ function stbPlay(url, pos){
         // webapis.avplay.setStreamingProperty("PREBUFFER_MODE", '3000');
         // webapis.avplay.setStreamingProperty("PREBUFFER_MODE", sBufSize+'000');
         // webapis.avplay.setStreamingProperty("ADAPTIVE_INFO", "FIXED_MAX_RESOLUTION=7680X4320");
-                //webapis.avplay.setDrm("VERIMATRIX", "Initialize", properties);
-        try {if (drmVMX==1){(true) ? webapis.avplay.setDrm("VERIMATRIX", "Initialize", properties) : webapis.avplay.setDrm("VERIMATRIX", "SetProperties", properties)};}catch(e){}
+           try {if (drmVMX==1)
+		{if(true){webapis.avplay.setDrm("VERIMATRIX", "Initialize", properties); alert("DRM-1 Ok");}
+		else{webapis.avplay.setDrm("VERIMATRIX", "SetProperties", properties);alert("DRM-2 Ok");}
+		};}catch(e){alert("Error DRM".e)}
 //        try {if (drmVMX==1){webapis.avplay.setDrm("VERIMATRIX", "SetProperties", properties)};}catch(e){}
 //        try {if (drmVMX==1){webapis.avplay.setDrm("VERIMATRIX", "Initialize", properties)};}catch(e){}
                 webapis.avplay.prepareAsync(
