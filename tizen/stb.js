@@ -1,7 +1,7 @@
-var vmxDomain='46.61.196.66',vmxOwner='Rostelecom',drmVMX=0;
+var vmxDomain='vmxott.svc.iptv.rt.ru',vmxOwner='Rostelecom',drmVMX=0;
 var drmParam = {
     CompanyName: vmxOwner,
-    IPTV: vmxDomain,
+    IPTV: "",
     Web: vmxDomain
     };
 var properties = JSON.stringify(drmParam);
