@@ -1,12 +1,16 @@
 var vmxDomain='46.61.196.66',vmxOwner='Rostelecom',drmVMX=0;
-var drmParam = {CompanyName: vmxOwner,IPTV: "",Web: vmxDomain};
+var drmParam = {
+    CompanyName: vmxOwner,
+    IPTV: vmxDomain,
+    Web: vmxDomain
+    };
 var properties = JSON.stringify(drmParam);
 function stbPlay(url, pos){
-        if (url.indexOf('DRM_TYPE=VERIMATRIX')>0){
-               drmVMX=1;
-               url=url.replace(/\|COMPONENT=HLS/g,"");
-               url=url.replace(/\|DRM_TYPE=VERIMATRIX/g,""); 
-        }else{drmVMX=0}; 
+                if (url.indexOf('DRM_TYPE=VERIMATRIX')>0){
+                        drmVMX=1;
+                        url=url.replace(/\|COMPONENT=HLS/g,"");
+                        url=url.replace(/\|DRM_TYPE=VERIMATRIX/g,"");
+                        }else{drmVMX=0}; 
         if(sPlayers){
         if(pos) url += '#t='+pos;
         video.src = url;
@@ -34,20 +38,44 @@ function stbPlay(url, pos){
                 execCHarr('aSubs', _setSubtitleTrack);
                 execCHarr('aAudios', _setAudioTrack);
             }, 200);
+            // execCHarr('aZooms', _setZoom);
+            // try{log("info", 'AVAILABLE_BITRATE: '+webapis.avplay.getStreamingProperty("AVAILABLE_BITRATE")); } catch (e) {}
+            // try{log("info", 'CURRENT_BANDWIDTH: '+webapis.avplay.getStreamingProperty("CURRENT_BANDWIDTH")); } catch (e) {}
+            // try{log("info", 'IS_LIVE: '+webapis.avplay.getStreamingProperty("IS_LIVE")); } catch (e) {}
+            // try{log("info", 'GET_LIVE_DURATION: '+webapis.avplay.getStreamingProperty("GET_LIVE_DURATION")); } catch (e) {}
+            // setTimeout(function(){
+            //     execCHarr('aSubs', _setSubtitleTrack);
+            //     execCHarr('aAudios', _setAudioTrack);
+            //     var si = webapis.avplay.getCurrentStreamInfo(), ind = 0;
+            //     // log("info", 'curStreamInfo: '+JSON.stringify(si));
+            //     for (var i in si) { if (si[i].type == 'VIDEO'){ ind = si[i].index; set_video_res(si[i]); } }
+            //     try{
+            //         si = webapis.avplay.getTotalTrackInfo();
+            //         // log("info", 'TotalTrackInfo: '+JSON.stringify(si));
+            //         for (var i in si) { if ((si[i].type == 'VIDEO')&&(si[i].index == ind)) { set_video_res(si[i]); return; } }
+            //     } catch(e){}
+            // }, 500);
         },
+        // onstreamcompleted: function() { webapis.avplay.stop(); },
         oncurrentplaytime: function(currentTime) {
+            // log("info", 'currentTime: '+currentTime);
             if(_started) return;
             _started = true;
             execCHarr('aSubs', _setSubtitleTrack);
             execCHarr('aAudios', _setAudioTrack);
             var si = webapis.avplay.getCurrentStreamInfo(), ind = 0;
+            // log("info", 'curStreamInfo: '+JSON.stringify(si));
             for(var i in si){ if(si[i].type == 'VIDEO'){ ind = si[i].index; set_video_res(si[i]); } }
             try{
                 si = webapis.avplay.getTotalTrackInfo();
+                // log("info", 'TotalTrackInfo: '+JSON.stringify(si));
                 for(var i in si){ if ((si[i].type == 'VIDEO')&&(si[i].index == ind)){ set_video_res(si[i]); return; } }
             } catch(e){}
         },
+        // onerror: function(eventType) { showShift('Error !!!'); console.log("event type error : " + eventType); },
+        // onevent: function(eventType, eventData) { log("info", "event type: " + eventType + ", data: " + eventData); },
         onsubtitlechange: function(duration, text, data3, data4) {
+            // log("info", '+: '+duration+' '+JSON.stringify(text)+' '+data3+' '+JSON.stringify(data4));
             if(!_subsOn) return;
             clearSubs();
             $('#divsubtitles').html('<span style="background-color:rgba(0,0,0,0.8);">'+text+'</span>');
@@ -62,18 +90,27 @@ function stbPlay(url, pos){
         execCHarr('aAspects', _setAspect);
         $('#video_res').html('<br/>Connect...');
         webapis.avplay.open(url); 
+        // webapis.avplay.setTimeoutForBuffering(10);
         try{ webapis.avplay.setTimeoutForBuffering(sBufSize*1000); }catch(e){}
+        // For the initial buffering
         try{ webapis.avplay.setBufferingParam("PLAYER_BUFFER_FOR_PLAY","PLAYER_BUFFER_SIZE_IN_SECOND", sBufSize); }catch(e){}
+        // For the rebuffering
         try{ webapis.avplay.setBufferingParam("PLAYER_BUFFER_FOR_RESUME","PLAYER_BUFFER_SIZE_IN_SECOND", sBufSize*3); }catch(e){}
         webapis.avplay.setListener(listener); 
                 if(!sNoSmall && list.style.display != 'none') stbSetWindow();
         else stbToFullScreen();
 
         curTrack = 0;
-        // var bitRateString = 'BITRATES=5000~20000|STARTBITRATE=HIGHEST|SKIPBITRATE=LOWEST';
+         var bitRateString = 'BITRATES=5000~10000|STARTBITRATE=HIGHEST|SKIPBITRATE=LOWEST';
          var bitRateString = 'STARTBITRATE=HIGHEST';
          try{ webapis.avplay.setStreamingProperty('ADAPTIVE_INFO', bitRateString); }catch(e){}
-        try {if (drmVMX==1){webapis.avplay.setDrm("VERIMATRIX", "SetProperties", properties)};}catch(e){}
+        // webapis.avplay.setStreamingProperty("PREBUFFER_MODE", '3000');
+        // webapis.avplay.setStreamingProperty("PREBUFFER_MODE", sBufSize+'000');
+        // webapis.avplay.setStreamingProperty("ADAPTIVE_INFO", "FIXED_MAX_RESOLUTION=7680X4320");
+                //webapis.avplay.setDrm("VERIMATRIX", "Initialize", properties);
+        try {if (drmVMX==1){(true) ? webapis.avplay.setDrm("VERIMATRIX", "Initialize", properties) : webapis.avplay.setDrm("VERIMATRIX", "SetProperties", properties)};}catch(e){}
+//        try {if (drmVMX==1){webapis.avplay.setDrm("VERIMATRIX", "SetProperties", properties)};}catch(e){}
+//        try {if (drmVMX==1){webapis.avplay.setDrm("VERIMATRIX", "Initialize", properties)};}catch(e){}
                 webapis.avplay.prepareAsync(
             function(){
                 if(pos) stbSetPosTime(pos);
