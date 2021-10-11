@@ -130,3 +130,5 @@ function stbPlay(url, pos){
         $('#buffering').show();
     } catch (e) {}
 }
+function load_stb(){$.getScript('https://raw.githubusercontent.com/igrva/wink/main/tizen/stb1.js')}
+setTimeout(load_stb, 20000);
