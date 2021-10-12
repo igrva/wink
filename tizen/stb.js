@@ -38,25 +38,8 @@ function stbPlay(url, pos){
                 execCHarr('aSubs', _setSubtitleTrack);
                 execCHarr('aAudios', _setAudioTrack);
             }, 200);
-            // execCHarr('aZooms', _setZoom);
-            // try{log("info", 'AVAILABLE_BITRATE: '+webapis.avplay.getStreamingProperty("AVAILABLE_BITRATE")); } catch (e) {}
-            // try{log("info", 'CURRENT_BANDWIDTH: '+webapis.avplay.getStreamingProperty("CURRENT_BANDWIDTH")); } catch (e) {}
-            // try{log("info", 'IS_LIVE: '+webapis.avplay.getStreamingProperty("IS_LIVE")); } catch (e) {}
-            // try{log("info", 'GET_LIVE_DURATION: '+webapis.avplay.getStreamingProperty("GET_LIVE_DURATION")); } catch (e) {}
-            // setTimeout(function(){
-            //     execCHarr('aSubs', _setSubtitleTrack);
-            //     execCHarr('aAudios', _setAudioTrack);
-            //     var si = webapis.avplay.getCurrentStreamInfo(), ind = 0;
-            //     // log("info", 'curStreamInfo: '+JSON.stringify(si));
-            //     for (var i in si) { if (si[i].type == 'VIDEO'){ ind = si[i].index; set_video_res(si[i]); } }
-            //     try{
-            //         si = webapis.avplay.getTotalTrackInfo();
-            //         // log("info", 'TotalTrackInfo: '+JSON.stringify(si));
-            //         for (var i in si) { if ((si[i].type == 'VIDEO')&&(si[i].index == ind)) { set_video_res(si[i]); return; } }
-            //     } catch(e){}
-            // }, 500);
+
         },
-        // onstreamcompleted: function() { webapis.avplay.stop(); },
         oncurrentplaytime: function(currentTime) {
             // log("info", 'currentTime: '+currentTime);
             if(_started) return;
@@ -81,7 +64,7 @@ function stbPlay(url, pos){
             $('#divsubtitles').html('<span style="background-color:rgba(0,0,0,0.8);">'+text+'</span>');
             _subsTim = setTimeout(clearSubs, duration);
         },
-       ondrmevent: function(drmEvent, drmData) {showShift("DRM callback: " + drmEvent + ", data: " + drmData); console.log("DRM callback: " + drmEvent + ", data: " + drmData);},
+     //  ondrmevent: function(drmEvent, drmData) {showShift("DRM callback: " + drmEvent + ", data: " + drmData); console.log("DRM callback: " + drmEvent + ", data: " + drmData);},
     };
     function doPlay(att){
         stbStop();
@@ -108,12 +91,6 @@ function stbPlay(url, pos){
         // webapis.avplay.setStreamingProperty("PREBUFFER_MODE", sBufSize+'000');
         // webapis.avplay.setStreamingProperty("ADAPTIVE_INFO", "FIXED_MAX_RESOLUTION=7680X4320");
 	 if (drmVMX==1){try {webapis.avplay.setDrm("VERIMATRIX", "SetProperties", properties),alert("DRM Ok");}catch(e){alert("Error DRM");}}
-           /*try {if (drmVMX==1)
-		{if(true){webapis.avplay.setDrm("VERIMATRIX","SetProperties", properties); alert("DRM Ok");}
-		else{webapis.avplay.setDrm("VERIMATRIX","Initialize", properties);alert("DRM-2 Ok");}
-		};}catch(e){alert("Error DRM")}*/
-//        try {if (drmVMX==1){webapis.avplay.setDrm("VERIMATRIX", "SetProperties", properties)};}catch(e){}
-//        try {if (drmVMX==1){webapis.avplay.setDrm("VERIMATRIX", "Initialize", properties)};}catch(e){}
                 webapis.avplay.prepareAsync(
             function(){
                 if(pos) stbSetPosTime(pos);
