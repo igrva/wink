@@ -101,16 +101,17 @@ function stbPlay(url, pos){
         else stbToFullScreen();
 
         curTrack = 0;
-         var bitRateString = 'BITRATES=5000~10000|STARTBITRATE=HIGHEST|SKIPBITRATE=LOWEST';
+         //var bitRateString = 'BITRATES=5000~10000|STARTBITRATE=HIGHEST|SKIPBITRATE=LOWEST';
          var bitRateString = 'STARTBITRATE=HIGHEST';
          try{ webapis.avplay.setStreamingProperty('ADAPTIVE_INFO', bitRateString); }catch(e){}
         // webapis.avplay.setStreamingProperty("PREBUFFER_MODE", '3000');
         // webapis.avplay.setStreamingProperty("PREBUFFER_MODE", sBufSize+'000');
         // webapis.avplay.setStreamingProperty("ADAPTIVE_INFO", "FIXED_MAX_RESOLUTION=7680X4320");
-           try {if (drmVMX==1)
+	 if (drmVMX==1){try {webapis.avplay.setDrm("VERIMATRIX", "SetProperties", properties),alert("DRM Ok");}catch(e){alert("Error DRM");}}
+           /*try {if (drmVMX==1)
 		{if(true){webapis.avplay.setDrm("VERIMATRIX","SetProperties", properties); alert("DRM Ok");}
 		else{webapis.avplay.setDrm("VERIMATRIX","Initialize", properties);alert("DRM-2 Ok");}
-		};}catch(e){alert("Error DRM")}
+		};}catch(e){alert("Error DRM")}*/
 //        try {if (drmVMX==1){webapis.avplay.setDrm("VERIMATRIX", "SetProperties", properties)};}catch(e){}
 //        try {if (drmVMX==1){webapis.avplay.setDrm("VERIMATRIX", "Initialize", properties)};}catch(e){}
                 webapis.avplay.prepareAsync(
