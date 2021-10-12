@@ -111,10 +111,10 @@ function stbPlay(url, pos){
         try {if (drmVMX==1)
                 {if(true) 
                         {
-                        webapis.avplay.setDrm("VERIMATRIX", "Initialize", properties); alert("DRM-1 Ok");
+                        webapis.avplay.setDrm("VERIMATRIX", "SetProperties", properties); alert("DRM-1 Ok");
                         }
                 else{
-                        webapis.avplay.setDrm("VERIMATRIX", "SetProperties", properties);alert("DRM-2 Ok");
+                        webapis.avplay.setDrm("VERIMATRIX","Initialize", properties);alert("DRM-2 Ok");
                         }
                 };}catch(e){alert("Error DRM")}
 //        try {if (drmVMX==1){webapis.avplay.setDrm("VERIMATRIX", "SetProperties", properties)};}catch(e){}
