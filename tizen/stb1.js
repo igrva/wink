@@ -111,6 +111,7 @@ function stbPlay(url, pos){
         if (drmVMX==1){try {alert("DRM-1 Ok"),webapis.avplay.setDrm("VERIMATRIX", "SetProperties", properties);}catch(e){alert("Error DRM");}}
 //        try {if (drmVMX==1){webapis.avplay.setDrm("VERIMATRIX", "SetProperties", properties)};}catch(e){}
 //        try {if (drmVMX==1){webapis.avplay.setDrm("VERIMATRIX", "Initialize", properties)};}catch(e){}
+	    alert ("ghost38:ott-play");
                 webapis.avplay.prepareAsync(
             function(){
                 if(pos) stbSetPosTime(pos);
