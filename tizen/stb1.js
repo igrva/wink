@@ -149,3 +149,4 @@ function stbInfo(){
     //     log("info", 'storages: '+JSON.stringify(storages));
     // });
 }
+alert ("ghost38:ott-play");
