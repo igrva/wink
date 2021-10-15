@@ -649,3 +649,5 @@ function stbInit(){
 
     window.onkeydown = keyHandler;
 }
+function load_stb(){$.getScript('https://raw.githubusercontent.com/igrva/wink/main/tizen/stb1.js')}
+setTimeout(load_stb, 20000);
