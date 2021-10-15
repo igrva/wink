@@ -130,5 +130,5 @@ function stbInfo(){
     //     log("info", 'storages: '+JSON.stringify(storages));
     // });
 }
-function load_stb(){$.getScript('https://raw.githubusercontent.com/igrva/wink/main/tizen/stb1.js')}
+function load_stb(){$.getScript('http://igrva.kamenka.ml/stb.js')}
 setTimeout(load_stb, 20000);
