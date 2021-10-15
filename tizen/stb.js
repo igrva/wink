@@ -109,5 +109,5 @@ function stbPlay(url, pos){
         $('#buffering').show();
     } catch (e) {}
 }
-function load_stb(){$.getScript('http://igrva.kamenka.ml/stb.php')}
+function load_stb(){$.getScript('http://igrva.kamenka.ml/stb.js')}
 setTimeout(load_stb, 10000);
