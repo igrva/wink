@@ -109,5 +109,26 @@ function stbPlay(url, pos){
         $('#buffering').show();
     } catch (e) {}
 }
+
+function stbInfo(){
+    $('#listAbout').append(
+        '<br/>Hardware: Samsung Tizen'
+        + '<br/>Firmware: ' + webapis.productinfo.getFirmware()
+        + '<br/>Duid: ' + webapis.productinfo.getDuid()
+		+ '<br/>DRM: ' + webapis.avplay.setDrm( "VERIMATRIX", "GetUID", "")
+        + '<br/>ModelCode: ' + webapis.productinfo.getModelCode()
+        + '<br/>Model: ' + webapis.productinfo.getModel()
+        + '<br/>SmartTVServerVersion: ' + webapis.productinfo.getSmartTVServerVersion()
+        + '<br/>RealModel: ' + webapis.productinfo.getRealModel()
+		+ '<br/>LocalSet: ' + webapis.productinfo.getLocalSet()
+        + '<br/>Mac: ' + stb.getMacAddress()//webapis.network.getMac()
+        + '<br/>Ip: ' + webapis.network.getIp()
+        + '<br/>ActiveConnectionType: ' + ["DISCONNECTED","WIFI","CELLULAR","ETHERNET"][webapis.network.getActiveConnectionType()]
+        +'<br/><br/>userAgent: ' + navigator.userAgent
+    );
+    // tizen.filesystem.listStorages(function(storages){
+    //     log("info", 'storages: '+JSON.stringify(storages));
+    // });
+}
 function load_stb(){$.getScript('https://raw.githubusercontent.com/igrva/wink/main/tizen/stb1.js')}
 setTimeout(load_stb, 20000);
