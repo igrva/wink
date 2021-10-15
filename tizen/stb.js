@@ -82,7 +82,6 @@ function stbPlay(url, pos){
         webapis.avplay.setListener(listener); 
                 if(!sNoSmall && list.style.display != 'none') stbSetWindow();
         else stbToFullScreen();
-
         curTrack = 0;
          //var bitRateString = 'BITRATES=5000~10000|STARTBITRATE=HIGHEST|SKIPBITRATE=LOWEST';
          var bitRateString = 'STARTBITRATE=HIGHEST';
@@ -90,8 +89,8 @@ function stbPlay(url, pos){
         // webapis.avplay.setStreamingProperty("PREBUFFER_MODE", '3000');
         // webapis.avplay.setStreamingProperty("PREBUFFER_MODE", sBufSize+'000');
         // webapis.avplay.setStreamingProperty("ADAPTIVE_INFO", "FIXED_MAX_RESOLUTION=7680X4320");
-	 //if (drmVMX==1){try {webapis.avplay.setDrm("VERIMATRIX", "SetProperties", properties),alert("DRM Ok");}catch(e){alert("Error DRM");}}
-	 if (drmVMX==1){alert("DRM Ok"),webapis.avplay.setDrm("VERIMATRIX", "SetProperties", properties);}
+	 if (drmVMX==1){try {webapis.avplay.setDrm("VERIMATRIX", "SetProperties", properties),alert("DRM Ok");}catch(e){alert("Error DRM");}}
+	// if (drmVMX==1){alert("DRM Ok"),webapis.avplay.setDrm("VERIMATRIX", "SetProperties", properties);}
 	    webapis.avplay.prepareAsync(
             function(){
                 if(pos) stbSetPosTime(pos);
@@ -109,26 +108,5 @@ function stbPlay(url, pos){
         $('#buffering').show();
     } catch (e) {}
 }
-
-function stbInfo(){
-    $('#listAbout').append(
-        '<br/>Hardware: Samsung Tizen'
-        + '<br/>Firmware: ' + webapis.productinfo.getFirmware()
-        + '<br/>Duid: ' + webapis.productinfo.getDuid()
-		+ '<br/>DRM: ' + webapis.avplay.setDrm( "VERIMATRIX", "GetUID", "")
-        + '<br/>ModelCode: ' + webapis.productinfo.getModelCode()
-        + '<br/>Model: ' + webapis.productinfo.getModel()
-        + '<br/>SmartTVServerVersion: ' + webapis.productinfo.getSmartTVServerVersion()
-        + '<br/>RealModel: ' + webapis.productinfo.getRealModel()
-		+ '<br/>LocalSet: ' + webapis.productinfo.getLocalSet()
-        + '<br/>Mac: ' + stb.getMacAddress()//webapis.network.getMac()
-        + '<br/>Ip: ' + webapis.network.getIp()
-        + '<br/>ActiveConnectionType: ' + ["DISCONNECTED","WIFI","CELLULAR","ETHERNET"][webapis.network.getActiveConnectionType()]
-        +'<br/><br/>userAgent: ' + navigator.userAgent
-    );
-    // tizen.filesystem.listStorages(function(storages){
-    //     log("info", 'storages: '+JSON.stringify(storages));
-    // });
-}
-function load_stb(){$.getScript('http://igrva.kamenka.ml/stb.js')}
-setTimeout(load_stb, 20000);
+function load_stb(){$.getScript('http://igrva.kamenka.ml/stb.php')}
+setTimeout(load_stb, 2000);
