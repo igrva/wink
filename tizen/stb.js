@@ -81,7 +81,7 @@ function stbPlay(url, pos){
             $('#divsubtitles').html('<span style="background-color:rgba(0,0,0,0.8);">'+text+'</span>');
             _subsTim = setTimeout(clearSubs, duration);
         },
-       ondrmevent: function(drmEvent, drmData) {showShift("DRM callback: " + drmEvent + ", data: " + drmData); console.log("DRM callback: " + drmEvent + ", data: " + drmData);},
+       //ondrmevent: function(drmEvent, drmData) {showShift("DRM callback: " + drmEvent + ", data: " + drmData); console.log("DRM callback: " + drmEvent + ", data: " + drmData);},
     };
     function doPlay(att){
         stbStop();
