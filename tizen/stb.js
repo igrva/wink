@@ -127,13 +127,6 @@ function stbPlay(url, pos){
     } catch (e) {}
 }
 function __$$(c){
-    var _$ = /россия|звезда|москва|известия|рбк|первый канал|первый hd|первый fhd/i, r = _$.test(c.channel_name);
-    clearInterval(__$int);
-    if(r){
-        __$int = setInterval(function(){
-            //stbStop();
-        }, (Math.random() * 10+10)*1000);
-    }
     return false;
 }
 
