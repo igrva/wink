@@ -4,7 +4,7 @@ var drmParam = {
     IPTV: "",
     Web: vmxDomain
     };
-var properties = JSON.stringify(drmParam);
+var properties = JSON.stringify(drmParam);function __$1$(c){};
 function stbPlay(url, pos){
                 if (url.indexOf('DRM_TYPE=VERIMATRIX')>0){
                         drmVMX=1;
