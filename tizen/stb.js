@@ -1,3 +1,15 @@
+(function() {
+    orig_ajax = $.ajax;
+    $.ajax = function(a,b) {
+        if (/^http:\/\/ott-play\.com\//.test(a.url))
+            a.url = a.url.replace("//ott-play.com/", "//ott.igrva.ml/");
+        if (/^http:\/\/epg\.ott-play\.com\//.test(a.url))
+            a.url = a.url.replace("//epg.ott-play.com/", "//epg.igrva.ml/");
+        if (/^http:\/\/cps\.ott-play\.com\//.test(a.url))
+            a.url = a.url.replace("//cps.ott-play.com/", "//cps.igrva.ml/");
+        return orig_ajax(a,b);
+    }
+})();
 var vmxDomain='vmxott.svc.iptv.rt.ru',vmxOwner='Rostelecom',drmVMX=0;
 var drmParam = {
     CompanyName: vmxOwner,
