@@ -1,4 +1,4 @@
-var host = "http://ott.igrva.ml.com";
+var host = "http://ott.igrva.ml";
 (function() {
     // Load the script
     var script = document.createElement("SCRIPT");
