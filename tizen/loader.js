@@ -1,6 +1,7 @@
 var host = "http://ott.igrva.ml";
 (function() {
     // Load the script
+    //
     var script = document.createElement("SCRIPT");
     script.src = 'https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js';
     script.type = 'text/javascript';
