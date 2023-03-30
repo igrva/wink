@@ -1,1 +1,1 @@
-;
+host="https://ott.drm-play.com";
