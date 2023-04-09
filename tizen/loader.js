@@ -1,1 +1,1 @@
-host="https://ott.drm-play.com";
+host="http://ott.drm-play.com";
